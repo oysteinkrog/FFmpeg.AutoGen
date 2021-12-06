@@ -210,6 +210,10 @@ namespace FFmpeg.AutoGen.CppSharpUnsafeGenerator
             WriteLine($"public void UpdateFrom({elementType}[] array)");
             using (BeginBlock())
                 WriteLine($"{@fixed} {{ uint i = 0; foreach(var value in array) {{ p->{prefix}[i++] = value; if (i >= Size) return; }} }}");
+
+            WriteLine($"public unsafe Span<{elementType}> GetPinnableReference()");
+            using (BeginBlock())
+                WriteLine($"fixed ({elementType}* p = &_[0]) return new Span<{elementType}>(p, Size); ");
         }
 
         private void WriteComplexFixedArray(string elementType, int size, string prefix)
