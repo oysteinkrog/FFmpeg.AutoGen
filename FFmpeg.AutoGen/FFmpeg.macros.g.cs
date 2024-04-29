@@ -1,6 +1,9 @@
 using System;
 using System.Runtime.InteropServices;
 
+#pragma warning disable 169
+#pragma warning disable CS0649
+#pragma warning disable CS0108
 namespace FFmpeg.AutoGen
 {
     public unsafe static partial class ffmpeg
@@ -1044,12 +1047,12 @@ namespace FFmpeg.AutoGen
         public const bool FF_API_UNUSED_CODEC_CAPS = LIBAVCODEC_VERSION_MAJOR < 0x3b;
         /// <summary>FF_API_USER_VISIBLE_AVHWACCEL = (LIBAVCODEC_VERSION_MAJOR &lt; 59)</summary>
         public const bool FF_API_USER_VISIBLE_AVHWACCEL = LIBAVCODEC_VERSION_MAJOR < 0x3b;
-        /// <summary>FF_API_VAAPI = (LIBAVUTIL_VERSION_MAJOR &lt; 57)</summary>
-        public const bool FF_API_VAAPI = LIBAVUTIL_VERSION_MAJOR < 0x39;
         /// <summary>FF_API_VBV_DELAY = (LIBAVCODEC_VERSION_MAJOR &lt; 59)</summary>
         public const bool FF_API_VBV_DELAY = LIBAVCODEC_VERSION_MAJOR < 0x3b;
         /// <summary>FF_API_VDPAU_PROFILE = (LIBAVCODEC_VERSION_MAJOR &lt; 59)</summary>
         public const bool FF_API_VDPAU_PROFILE = LIBAVCODEC_VERSION_MAJOR < 0x3b;
+        /// <summary>FF_API_VAAPI = (LIBAVUTIL_VERSION_MAJOR &lt; 57)</summary>
+        public const bool FF_API_VAAPI = LIBAVUTIL_VERSION_MAJOR < 0x39;
         // public static FF_ARRAY_ELEMS = (a) (sizeof(a) / sizeof((a)[0]));
         /// <summary>FF_BUG_AMV = 32</summary>
         public const int FF_BUG_AMV = 0x20;
@@ -1144,10 +1147,10 @@ namespace FFmpeg.AutoGen
         public const int FF_DCT_ALTIVEC = 0x5;
         /// <summary>FF_DCT_AUTO = 0</summary>
         public const int FF_DCT_AUTO = 0x0;
-        /// <summary>FF_DCT_FAAN = 6</summary>
-        public const int FF_DCT_FAAN = 0x6;
         /// <summary>FF_DCT_FASTINT = 1</summary>
         public const int FF_DCT_FASTINT = 0x1;
+        /// <summary>FF_DCT_FAAN = 6</summary>
+        public const int FF_DCT_FAAN = 0x6;
         /// <summary>FF_DCT_INT = 2</summary>
         public const int FF_DCT_INT = 0x2;
         /// <summary>FF_DCT_MMX = 3</summary>
@@ -1268,22 +1271,6 @@ namespace FFmpeg.AutoGen
         public const int FF_PRED_MEDIAN = 0x2;
         /// <summary>FF_PRED_PLANE = 1</summary>
         public const int FF_PRED_PLANE = 0x1;
-        /// <summary>FF_PROFILE_AAC_ELD = 38</summary>
-        public const int FF_PROFILE_AAC_ELD = 0x26;
-        /// <summary>FF_PROFILE_AAC_HE = 4</summary>
-        public const int FF_PROFILE_AAC_HE = 0x4;
-        /// <summary>FF_PROFILE_AAC_HE_V2 = 28</summary>
-        public const int FF_PROFILE_AAC_HE_V2 = 0x1c;
-        /// <summary>FF_PROFILE_AAC_LD = 22</summary>
-        public const int FF_PROFILE_AAC_LD = 0x16;
-        /// <summary>FF_PROFILE_AAC_LOW = 1</summary>
-        public const int FF_PROFILE_AAC_LOW = 0x1;
-        /// <summary>FF_PROFILE_AAC_LTP = 3</summary>
-        public const int FF_PROFILE_AAC_LTP = 0x3;
-        /// <summary>FF_PROFILE_AAC_MAIN = 0</summary>
-        public const int FF_PROFILE_AAC_MAIN = 0x0;
-        /// <summary>FF_PROFILE_AAC_SSR = 2</summary>
-        public const int FF_PROFILE_AAC_SSR = 0x2;
         /// <summary>FF_PROFILE_ARIB_PROFILE_A = 0</summary>
         public const int FF_PROFILE_ARIB_PROFILE_A = 0x0;
         /// <summary>FF_PROFILE_ARIB_PROFILE_C = 1</summary>
@@ -1386,10 +1373,6 @@ namespace FFmpeg.AutoGen
         public const int FF_PROFILE_MJPEG_JPEG_LS = 0xf7;
         /// <summary>FF_PROFILE_MPEG2_422 = 0</summary>
         public const int FF_PROFILE_MPEG2_422 = 0x0;
-        /// <summary>FF_PROFILE_MPEG2_AAC_HE = 131</summary>
-        public const int FF_PROFILE_MPEG2_AAC_HE = 0x83;
-        /// <summary>FF_PROFILE_MPEG2_AAC_LOW = 128</summary>
-        public const int FF_PROFILE_MPEG2_AAC_LOW = 0x80;
         /// <summary>FF_PROFILE_MPEG2_HIGH = 1</summary>
         public const int FF_PROFILE_MPEG2_HIGH = 0x1;
         /// <summary>FF_PROFILE_MPEG2_MAIN = 4</summary>
@@ -1400,6 +1383,10 @@ namespace FFmpeg.AutoGen
         public const int FF_PROFILE_MPEG2_SNR_SCALABLE = 0x3;
         /// <summary>FF_PROFILE_MPEG2_SS = 2</summary>
         public const int FF_PROFILE_MPEG2_SS = 0x2;
+        /// <summary>FF_PROFILE_MPEG2_AAC_HE = 131</summary>
+        public const int FF_PROFILE_MPEG2_AAC_HE = 0x83;
+        /// <summary>FF_PROFILE_MPEG2_AAC_LOW = 128</summary>
+        public const int FF_PROFILE_MPEG2_AAC_LOW = 0x80;
         /// <summary>FF_PROFILE_MPEG4_ADVANCED_CODING = 11</summary>
         public const int FF_PROFILE_MPEG4_ADVANCED_CODING = 0xb;
         /// <summary>FF_PROFILE_MPEG4_ADVANCED_CORE = 12</summary>
@@ -1470,6 +1457,22 @@ namespace FFmpeg.AutoGen
         public const int FF_PROFILE_VVC_MAIN_10 = 0x1;
         /// <summary>FF_PROFILE_VVC_MAIN_10_444 = 33</summary>
         public const int FF_PROFILE_VVC_MAIN_10_444 = 0x21;
+        /// <summary>FF_PROFILE_AAC_ELD = 38</summary>
+        public const int FF_PROFILE_AAC_ELD = 0x26;
+        /// <summary>FF_PROFILE_AAC_HE = 4</summary>
+        public const int FF_PROFILE_AAC_HE = 0x4;
+        /// <summary>FF_PROFILE_AAC_HE_V2 = 28</summary>
+        public const int FF_PROFILE_AAC_HE_V2 = 0x1c;
+        /// <summary>FF_PROFILE_AAC_LD = 22</summary>
+        public const int FF_PROFILE_AAC_LD = 0x16;
+        /// <summary>FF_PROFILE_AAC_LOW = 1</summary>
+        public const int FF_PROFILE_AAC_LOW = 0x1;
+        /// <summary>FF_PROFILE_AAC_LTP = 3</summary>
+        public const int FF_PROFILE_AAC_LTP = 0x3;
+        /// <summary>FF_PROFILE_AAC_MAIN = 0</summary>
+        public const int FF_PROFILE_AAC_MAIN = 0x0;
+        /// <summary>FF_PROFILE_AAC_SSR = 2</summary>
+        public const int FF_PROFILE_AAC_SSR = 0x2;
         /// <summary>FF_QP2LAMBDA = 118</summary>
         public const int FF_QP2LAMBDA = 0x76;
         /// <summary>FF_QUALITY_SCALE = FF_LAMBDA_SCALE</summary>
