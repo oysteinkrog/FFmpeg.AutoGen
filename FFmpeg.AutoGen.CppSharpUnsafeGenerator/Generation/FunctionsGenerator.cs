@@ -106,6 +106,187 @@ internal sealed class FunctionsGenerator : GeneratorBase<ExportFunctionDefinitio
         this.WriteObsoletion(function);
         WriteLine($"public static {function.ReturnType.Name} {function.Name}({parameters}) => vectors.{function.Name}({parameterNames});");
         WriteLine();
+
+        // Generate ref overloads for all functions with double pointer parameters
+        GenerateRefOverloads(function);
+    }
+
+    private void GenerateRefOverloads(ExportFunctionDefinition function)
+    {
+        // Find parameters that are double pointers and could benefit from ref overloads
+        var doublePointerParams = function.Parameters
+            .Where(p => p.Type.Name.EndsWith("**") && !p.ByReference && !p.IsConstant)
+            .ToList();
+
+        if (!doublePointerParams.Any())
+            return;
+
+        // Generate all possible combinations of ref parameters (2^n - 1, excluding the original)
+        var paramCount = doublePointerParams.Count;
+        for (int i = 1; i < (1 << paramCount); i++) // Start from 1 to skip the original combination
+        {
+            var refParamsToConvert = new HashSet<FunctionParameter>();
+            for (int j = 0; j < paramCount; j++)
+            {
+                if ((i & (1 << j)) != 0)
+                {
+                    refParamsToConvert.Add(doublePointerParams[j]);
+                }
+            }
+
+            var modifiedParameters = function.Parameters.Select(p =>
+            {
+                if (refParamsToConvert.Contains(p))
+                {
+                    // Convert double pointer to ref single pointer
+                    var singlePointerType = p.Type.Name.Substring(0, p.Type.Name.Length - 1); // Remove one *
+                    return new FunctionParameter
+                    {
+                        Name = p.Name,
+                        Type = p.Type with { Name = singlePointerType },
+                        ByReference = true,
+                        IsConstant = p.IsConstant
+                    };
+                }
+                return p;
+            }).ToArray();
+
+            var refParameters = ParametersHelper.GetParameters(modifiedParameters, Context.IsLegacyGenerationOn, false);
+
+            this.WriteSummary(function);
+            modifiedParameters.ToList().ForEach(p => this.WriteParam(p, p.Name));
+            this.WriteReturnComment(function);
+            this.WriteObsoletion(function);
+
+            // Generate ref overload with proper method body instead of expression body
+            WriteLine($"public static {function.ReturnType.Name} {function.Name}({refParameters})");
+            WriteLine("{");
+
+            // Generate fixed statements for all ref parameters
+            var fixedStatements = new List<string>();
+            var ptrNames = new Dictionary<FunctionParameter, string>();
+            int ptrIndex = 1;
+
+            foreach (var refParam in refParamsToConvert)
+            {
+                var ptrName = refParamsToConvert.Count == 1 ? "ptr" : $"ptr{ptrIndex++}";
+                ptrNames[refParam] = ptrName;
+                fixedStatements.Add($"    fixed ({refParam.Type.Name.Substring(0, refParam.Type.Name.Length - 1)}* {ptrName} = &@{refParam.Name})");
+            }
+
+            // Write nested fixed statements
+            foreach (var fixedStatement in fixedStatements)
+            {
+                WriteLine(fixedStatement);
+                WriteLine("    {");
+            }
+
+            // Generate the call
+            var callParams = string.Join(", ", function.Parameters.Select(p =>
+                refParamsToConvert.Contains(p) ? ptrNames[p] : $"@{p.Name}"));
+
+            var returnKeyword = function.ReturnType.Name == "void" ? "" : "return ";
+            var indent = new string(' ', 4 + (fixedStatements.Count * 4));
+            WriteLine($"{indent}{returnKeyword}vectors.{function.Name}({callParams});");
+
+            // Close all fixed statement blocks
+            for (int k = 0; k < fixedStatements.Count; k++)
+            {
+                WriteLine("    }");
+            }
+
+            WriteLine("}");
+            WriteLine();
+        }
+    }
+
+    private void GenerateRefOverloadsForDllImport(ExportFunctionDefinition function, string libraryName)
+    {
+        // Find parameters that are double pointers and could benefit from ref overloads
+        var doublePointerParams = function.Parameters
+            .Where(p => p.Type.Name.EndsWith("**") && !p.ByReference && !p.IsConstant)
+            .ToList();
+
+        if (!doublePointerParams.Any())
+            return;
+
+        // Generate all possible combinations of ref parameters (2^n - 1, excluding the original)
+        var paramCount = doublePointerParams.Count;
+        for (int i = 1; i < (1 << paramCount); i++) // Start from 1 to skip the original combination
+        {
+            var refParamsToConvert = new HashSet<FunctionParameter>();
+            for (int j = 0; j < paramCount; j++)
+            {
+                if ((i & (1 << j)) != 0)
+                {
+                    refParamsToConvert.Add(doublePointerParams[j]);
+                }
+            }
+
+            var modifiedParameters = function.Parameters.Select(p =>
+            {
+                if (refParamsToConvert.Contains(p))
+                {
+                    // Convert double pointer to ref single pointer
+                    var singlePointerType = p.Type.Name.Substring(0, p.Type.Name.Length - 1); // Remove one *
+                    return new FunctionParameter
+                    {
+                        Name = p.Name,
+                        Type = p.Type with { Name = singlePointerType },
+                        ByReference = true,
+                        IsConstant = p.IsConstant
+                    };
+                }
+                return p;
+            }).ToArray();
+
+            var refParameters = ParametersHelper.GetParameters(modifiedParameters, Context.IsLegacyGenerationOn, false);
+
+            this.WriteSummary(function);
+            modifiedParameters.ToList().ForEach(p => this.WriteParam(p, p.Name));
+            this.WriteReturnComment(function);
+            this.WriteObsoletion(function);
+
+            // Generate ref overload that calls the original DllImport function
+            WriteLine($"public static {function.ReturnType.Name} {function.Name}({refParameters})");
+            WriteLine("{");
+
+            // Generate fixed statements for all ref parameters
+            var fixedStatements = new List<string>();
+            var ptrNames = new Dictionary<FunctionParameter, string>();
+            int ptrIndex = 1;
+
+            foreach (var refParam in refParamsToConvert)
+            {
+                var ptrName = refParamsToConvert.Count == 1 ? "ptr" : $"ptr{ptrIndex++}";
+                ptrNames[refParam] = ptrName;
+                fixedStatements.Add($"    fixed ({refParam.Type.Name.Substring(0, refParam.Type.Name.Length - 1)}* {ptrName} = &@{refParam.Name})");
+            }
+
+            // Write nested fixed statements
+            foreach (var fixedStatement in fixedStatements)
+            {
+                WriteLine(fixedStatement);
+                WriteLine("    {");
+            }
+
+            // Generate the call
+            var callParams = string.Join(", ", function.Parameters.Select(p =>
+                refParamsToConvert.Contains(p) ? ptrNames[p] : $"@{p.Name}"));
+
+            var returnKeyword = function.ReturnType.Name == "void" ? "" : "return ";
+            var indent = new string(' ', 4 + (fixedStatements.Count * 4));
+            WriteLine($"{indent}{returnKeyword}{function.Name}({callParams});");
+
+            // Close all fixed statement blocks
+            for (int k = 0; k < fixedStatements.Count; k++)
+            {
+                WriteLine("    }");
+            }
+
+            WriteLine("}");
+            WriteLine();
+        }
     }
 
     public void GenerateVector(ExportFunctionDefinition function)
@@ -131,6 +312,9 @@ internal sealed class FunctionsGenerator : GeneratorBase<ExportFunctionDefinitio
         var parameters = ParametersHelper.GetParameters(function.Parameters, Context.IsLegacyGenerationOn);
         WriteLine($"public static extern {function.ReturnType.Name} {function.Name}({parameters});");
         WriteLine();
+
+        // Generate ref overloads for DllImport functions too
+        GenerateRefOverloadsForDllImport(function, libraryName);
     }
 
     private void GenerateDynamicallyLoaded(ExportFunctionDefinition function)
