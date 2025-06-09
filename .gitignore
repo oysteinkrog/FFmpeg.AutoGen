@@ -111,3 +111,5 @@ UpgradeLog*.XML
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+staging
