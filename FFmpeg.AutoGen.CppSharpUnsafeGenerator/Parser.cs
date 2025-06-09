@@ -32,7 +32,20 @@ internal sealed class Parser
             LanguageVersion = LanguageVersion.C99_GNU
         };
 
-        parserOptions.SetupMSVC(VisualStudioVersion.VS2019);
+        // Use clang instead of MSVC on Linux
+        if (Environment.OSVersion.Platform == PlatformID.Unix)
+        {
+            parserOptions.AddIncludeDirs("/usr/lib/llvm-14/lib/clang/14.0.0/include");
+            parserOptions.AddIncludeDirs("/usr/include");
+            parserOptions.AddIncludeDirs("/usr/include/x86_64-linux-gnu");
+            parserOptions.AddIncludeDirs("/usr/local/include");
+            parserOptions.AddDefines("__STDC_CONSTANT_MACROS");
+            parserOptions.AddDefines("__STDC_LIMIT_MACROS");
+        }
+        else
+        {
+            parserOptions.SetupMSVC(VisualStudioVersion.VS2019);
+        }
 
         foreach (var includeDir in IncludeDirs) parserOptions.AddIncludeDirs(includeDir);
 

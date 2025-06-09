@@ -44,6 +44,8 @@ internal abstract class GeneratorBase : IDisposable
 
     void IDisposable.Dispose()
     {
+        _indentedTextWriter?.Flush();
+        _streamWriter?.Flush();
         _streamWriter?.Dispose();
         _indentedTextWriter?.Dispose();
     }

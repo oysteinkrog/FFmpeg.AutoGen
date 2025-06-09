@@ -154,8 +154,24 @@ internal class MacroPostProcessor
         return new TypeOrAlias(macroName);
     }
 
-    internal TypeOrAlias GetTypeAlias(string typeName) =>
-        _context.TypeAliases.TryGetValue(typeName, out var alias) ? alias : typeName;
+    internal TypeOrAlias GetTypeAlias(string typeName)
+    {
+        if (_context.TypeAliases.TryGetValue(typeName, out var alias))
+            return alias;
+
+        // Convert C types to C# types
+        return typeName switch
+        {
+            "unsigned int" => "uint",
+            "unsigned long" => "ulong",
+            "unsigned short" => "ushort",
+            "unsigned char" => "byte",
+            "signed char" => "sbyte",
+            "long long" => "long",
+            "unsigned long long" => "ulong",
+            _ => typeName
+        };
+    }
 
     private string Serialize(object value)
     {

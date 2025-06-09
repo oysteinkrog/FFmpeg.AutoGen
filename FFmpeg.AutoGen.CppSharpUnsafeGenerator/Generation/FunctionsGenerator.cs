@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using FFmpeg.AutoGen.CppSharpUnsafeGenerator.Definitions;
 
@@ -9,6 +11,12 @@ internal sealed class FunctionsGenerator : GeneratorBase<ExportFunctionDefinitio
     private const string SuppressUnmanagedCodeSecurityAttribute = "[SuppressUnmanagedCodeSecurity]";
     private const string UnmanagedFunctionPointerAttribute = "[UnmanagedFunctionPointer(CallingConvention.Cdecl)]";
     public FunctionsGenerator(string path, GenerationContext context) : base(path, context) => IsTypeGenerationOn = true;
+
+    protected override IEnumerable<ExportFunctionDefinition> Query(IEnumerable<ExportFunctionDefinition> definitions)
+    {
+        var result = base.Query(definitions);
+        return result;
+    }
 
     public bool IsFacadeGenerationOn { get; set; }
     public bool IsVectorsGenerationOn { get; set; }
@@ -56,12 +64,12 @@ internal sealed class FunctionsGenerator : GeneratorBase<ExportFunctionDefinitio
     {
         yield return "System";
         yield return "System.Runtime.InteropServices";
-        if (!Context.IsLegacyGenerationOn && (IsStaticallyLinkedGenerationOn || IsDynamicallyLinkedGenerationOn || IsDynamicallyLoadedGenerationOn))
-            yield return "FFmpeg.AutoGen.Abstractions";
+        // Remove dependency on FFmpeg.AutoGen.Abstractions for standalone bindings
     }
 
     protected override void GenerateDefinitions(ExportFunctionDefinition[] functions)
     {
+
         if (IsDynamicallyLoadedGenerationOn)
         {
             WriteLine("public static bool ThrowErrorIfFunctionNotFound;");

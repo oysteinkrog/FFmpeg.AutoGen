@@ -14,5 +14,7 @@
     <PackageVersion Include="MSTest.TestFramework" Version="3.1.1" />
     <PackageVersion Include="SkiaSharp" Version="2.88.6" />
     <PackageVersion Include="SkiaSharp.NativeAssets.Linux" Version="2.88.6" />
+    <PackageVersion Include="FFmpeg.AutoGen.Redist.Mingw64" Version="7.1.0" />
+    <PackageVersion Include="System.Memory" Version="4.6.3" />
   </ItemGroup>
 </Project>

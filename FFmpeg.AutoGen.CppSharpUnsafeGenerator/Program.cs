@@ -35,14 +35,16 @@ internal class Program
             TypeAliases = { { "int64_t", typeof(long) } },
             WellKnownMacros =
             {
-                { "FFERRTAG", typeof(int) }, 
+                { "FFERRTAG", typeof(int) },
                 { "MKTAG", typeof(int) },
+                { "MKBETAG", typeof(int) },
                 { "UINT64_C", typeof(ulong) },
+                { "INT64_C", typeof(long) },
                 { "AV_VERSION_INT", typeof(int) },
                 { "AV_VERSION", typeof(string) },
-                { "_DHUGE_EXP", typeof(int) }, 
-                { "_DMAX", typeof(long) }, 
-                { "_FMAX", typeof(long) }, 
+                { "_DHUGE_EXP", typeof(int) },
+                { "_DMAX", typeof(long) },
+                { "_FMAX", typeof(long) },
                 { "_LMAX", typeof(long) }
             },
             FunctionExportMap = functionExports
@@ -51,6 +53,7 @@ internal class Program
                 .ToDictionary(x => x.Name),
             NoCustomStringMarshal = options.NoCustomStringMarshal,
         };
+
         var processor = new ASTProcessor(processingContext);
         astContexts.ForEach(processor.Process);
 
@@ -71,11 +74,8 @@ internal class Program
             FileHeader = options.FileHeader,
         };
 
+        GenerateUnifiedBindings(generationContext);
         GenerateLegacyFFmpegAutoGen(generationContext);
-        GenerateAbstractions(generationContext);
-        GenerateStaticallyLinkedBindings(generationContext);
-        GenerateDynamicallyLinkedBindings(generationContext);
-        GenerateDynamicallyLoadedBindings(generationContext);
     }
 
     private static IEnumerable<ASTContext> Parse(string includesDir)
@@ -100,8 +100,13 @@ internal class Program
         yield return p.Parse("libavutil/timecode.h");
         yield return p.Parse("libavutil/tree.h");
         yield return p.Parse("libavutil/hwcontext.h");
-        yield return p.Parse("libavutil/hwcontext_dxva2.h");
-        yield return p.Parse("libavutil/hwcontext_d3d11va.h");
+
+        // Skip Windows-specific headers on Linux
+        if (Environment.OSVersion.Platform != PlatformID.Unix)
+        {
+            yield return p.Parse("libavutil/hwcontext_dxva2.h");
+            yield return p.Parse("libavutil/hwcontext_d3d11va.h");
+        }
         yield return p.Parse("libavutil/hdr_dynamic_metadata.h");
         yield return p.Parse("libavutil/mastering_display_metadata.h");
 
@@ -117,8 +122,13 @@ internal class Program
         // libavcodec
         yield return p.Parse("libavcodec/avcodec.h");
         yield return p.Parse("libavcodec/bsf.h");
-        yield return p.Parse("libavcodec/dxva2.h");
-        yield return p.Parse("libavcodec/d3d11va.h");
+
+        // Skip Windows-specific headers on Linux
+        if (Environment.OSVersion.Platform != PlatformID.Unix)
+        {
+            yield return p.Parse("libavcodec/dxva2.h");
+            yield return p.Parse("libavcodec/d3d11va.h");
+        }
 
         // libavformat
         yield return p.Parse("libavformat/avformat.h");
@@ -152,54 +162,22 @@ internal class Program
         FunctionsGenerator.GenerateDynamicallyLoaded("DynamicallyLoadedBindings.g.cs", context with { TypeName = "DynamicallyLoadedBindings" });
     }
 
-    private static void GenerateAbstractions(GenerationContext baseContext)
+    private static void GenerateUnifiedBindings(GenerationContext baseContext)
     {
         var context = baseContext with
         {
-            Namespace = $"{baseContext.Namespace}.Abstractions",
-            OutputDir = Path.Combine(baseContext.SolutionDir, @"FFmpeg.AutoGen.Abstractions\generated")
+            Namespace = $"{baseContext.Namespace}.Bindings",
+            TypeName = "ffmpeg",
+            OutputDir = Path.Combine(baseContext.SolutionDir, "FFmpeg.AutoGen.Bindings", "generated")
         };
 
+        // Generate all the core binding files for static DllImport bindings
         MacrosGenerator.Generate($"{context.TypeName}.macros.g.cs", context);
         EnumsGenerator.Generate("Enums.g.cs", context);
         DelegatesGenerator.Generate("Delegates.g.cs", context);
         FixedArraysGenerator.Generate("Arrays.g.cs", context);
         StructuresGenerator.Generate("Structs.g.cs", context);
-        FunctionsGenerator.GenerateFacade($"{context.TypeName}.functions.facade.g.cs", context);
-        FunctionsGenerator.GenerateVectors("vectors.g.cs", context with { TypeName = "vectors" });
+        FunctionsGenerator.GenerateDynamicallyLinked($"{context.TypeName}.functions.g.cs", context);
         InlineFunctionsGenerator.Generate($"{context.TypeName}.functions.inline.g.cs", context);
-    }
-
-    private static void GenerateStaticallyLinkedBindings(GenerationContext baseContext)
-    {
-        var context = baseContext with
-        {
-            Namespace = $"{baseContext.Namespace}.Bindings.StaticallyLinked", TypeName = "StaticallyLinkedBindings",
-            OutputDir = Path.Combine(baseContext.SolutionDir, @"FFmpeg.AutoGen.Bindings.StaticallyLinked\generated")
-        };
-        FunctionsGenerator.GenerateStaticallyLinked("StaticallyLinkedBindings.g.cs", context);
-    }
-
-    private static void GenerateDynamicallyLinkedBindings(GenerationContext baseContext)
-    {
-        var context = baseContext with
-        {
-            Namespace = $"{baseContext.Namespace}.Bindings.DynamicallyLinked", TypeName = "DynamicallyLinkedBindings",
-            OutputDir = Path.Combine(baseContext.SolutionDir, @"FFmpeg.AutoGen.Bindings.DynamicallyLinked\generated")
-        };
-
-        FunctionsGenerator.GenerateDynamicallyLinked("DynamicallyLinkedBindings.g.cs", context);
-    }
-
-    private static void GenerateDynamicallyLoadedBindings(GenerationContext baseContext)
-    {
-        var context = baseContext with
-        {
-            Namespace = $"{baseContext.Namespace}.Bindings.DynamicallyLoaded", TypeName = "DynamicallyLoadedBindings",
-            OutputDir = Path.Combine(baseContext.SolutionDir, @"FFmpeg.AutoGen.Bindings.DynamicallyLoaded\generated")
-        };
-
-        LibrariesGenerator.Generate("DynamicallyLoadedBindings.libraries.g.cs", context);
-        FunctionsGenerator.GenerateDynamicallyLoaded("DynamicallyLoadedBindings.g.cs", context);
     }
 }

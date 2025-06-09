@@ -26,7 +26,18 @@ internal static class TypeHelper
         {
             BuiltinType x => GetTypeName(x),
             PointerType x => GetTypeName(x),
-            _ => type.Declaration.Name
+            _ => type.Declaration.Name switch
+            {
+                "uint8_t" => "byte",
+                "int8_t" => "sbyte",
+                "uint16_t" => "ushort",
+                "int16_t" => "short",
+                "uint32_t" => "uint",
+                "int32_t" => "int",
+                "uint64_t" => "ulong",
+                "int64_t" => "long",
+                _ => type.Declaration.Name
+            }
         };
     }
 
