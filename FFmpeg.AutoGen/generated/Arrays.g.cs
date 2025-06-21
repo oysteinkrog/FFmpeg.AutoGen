@@ -7,7 +7,7 @@ public unsafe struct AVRational_array2 : IFixedArray<AVRational>
     public static readonly int Size = 2;
     public int Length => 2;
     AVRational _0; AVRational _1;
-    
+
     public AVRational this[uint i]
     {
         get { if (i >= 2) throw new ArgumentOutOfRangeException(); fixed (AVRational* p0 = &_0) { return *(p0 + i); } }
@@ -35,7 +35,7 @@ public unsafe struct short_array2 : IFixedArray<short>
     public static readonly int Size = 2;
     public int Length => 2;
     fixed short _[2];
-    
+
     public short this[uint i]
     {
         get => _[i];
@@ -63,7 +63,7 @@ public unsafe struct void_ptrArray2 : IFixedArray
     public static readonly int Size = 2;
     public int Length => 2;
     void* _0; void* _1;
-    
+
     public void* this[uint i]
     {
         get { if (i >= 2) throw new ArgumentOutOfRangeException(); fixed (void** p0 = &_0) { return *(p0 + i); } }
@@ -91,7 +91,7 @@ public unsafe struct AVHDRPlusColorTransformParams_array3 : IFixedArray<AVHDRPlu
     public static readonly int Size = 3;
     public int Length => 3;
     AVHDRPlusColorTransformParams _0; AVHDRPlusColorTransformParams _1; AVHDRPlusColorTransformParams _2;
-    
+
     public AVHDRPlusColorTransformParams this[uint i]
     {
         get { if (i >= 3) throw new ArgumentOutOfRangeException(); fixed (AVHDRPlusColorTransformParams* p0 = &_0) { return *(p0 + i); } }
@@ -119,7 +119,7 @@ public unsafe struct AVRational_array3 : IFixedArray<AVRational>
     public static readonly int Size = 3;
     public int Length => 3;
     AVRational _0; AVRational _1; AVRational _2;
-    
+
     public AVRational this[uint i]
     {
         get { if (i >= 3) throw new ArgumentOutOfRangeException(); fixed (AVRational* p0 = &_0) { return *(p0 + i); } }
@@ -147,7 +147,7 @@ public unsafe struct AVRational_array3x2 : IFixedArray<AVRational_array2>
     public static readonly int Size = 3;
     public int Length => 3;
     AVRational_array2 _0; AVRational_array2 _1; AVRational_array2 _2;
-    
+
     public AVRational_array2 this[uint i]
     {
         get { if (i >= 3) throw new ArgumentOutOfRangeException(); fixed (AVRational_array2* p0 = &_0) { return *(p0 + i); } }
@@ -175,7 +175,7 @@ public unsafe struct short_array3x2 : IFixedArray<short_array2>
     public static readonly int Size = 3;
     public int Length => 3;
     short_array2 _0; short_array2 _1; short_array2 _2;
-    
+
     public short_array2 this[uint i]
     {
         get { if (i >= 3) throw new ArgumentOutOfRangeException(); fixed (short_array2* p0 = &_0) { return *(p0 + i); } }
@@ -203,7 +203,7 @@ public unsafe struct AVComponentDescriptor_array4 : IFixedArray<AVComponentDescr
     public static readonly int Size = 4;
     public int Length => 4;
     AVComponentDescriptor _0; AVComponentDescriptor _1; AVComponentDescriptor _2; AVComponentDescriptor _3;
-    
+
     public AVComponentDescriptor this[uint i]
     {
         get { if (i >= 4) throw new ArgumentOutOfRangeException(); fixed (AVComponentDescriptor* p0 = &_0) { return *(p0 + i); } }
@@ -231,7 +231,7 @@ public unsafe struct byte_ptrArray4 : IFixedArray
     public static readonly int Size = 4;
     public int Length => 4;
     byte* _0; byte* _1; byte* _2; byte* _3;
-    
+
     public byte* this[uint i]
     {
         get { if (i >= 4) throw new ArgumentOutOfRangeException(); fixed (byte** p0 = &_0) { return *(p0 + i); } }
@@ -259,7 +259,7 @@ public unsafe struct byte_array4 : IFixedArray<byte>
     public static readonly int Size = 4;
     public int Length => 4;
     fixed byte _[4];
-    
+
     public byte this[uint i]
     {
         get => _[i];
@@ -287,7 +287,7 @@ public unsafe struct int_array4 : IFixedArray<int>
     public static readonly int Size = 4;
     public int Length => 4;
     fixed int _[4];
-    
+
     public int this[uint i]
     {
         get => _[i];
@@ -315,7 +315,7 @@ public unsafe struct long_array4 : IFixedArray<long>
     public static readonly int Size = 4;
     public int Length => 4;
     fixed long _[4];
-    
+
     public long this[uint i]
     {
         get => _[i];
@@ -343,7 +343,7 @@ public unsafe struct uint_array4 : IFixedArray<uint>
     public static readonly int Size = 4;
     public int Length => 4;
     fixed uint _[4];
-    
+
     public uint this[uint i]
     {
         get => _[i];
@@ -371,7 +371,7 @@ public unsafe struct ulong_array4 : IFixedArray<ulong>
     public static readonly int Size = 4;
     public int Length => 4;
     fixed ulong _[4];
-    
+
     public ulong this[uint i]
     {
         get => _[i];
@@ -399,7 +399,7 @@ public unsafe struct int_array7 : IFixedArray<int>
     public static readonly int Size = 7;
     public int Length => 7;
     fixed int _[7];
-    
+
     public int this[uint i]
     {
         get => _[i];
@@ -427,7 +427,7 @@ public unsafe struct AVBufferRef_ptrArray8 : IFixedArray
     public static readonly int Size = 8;
     public int Length => 8;
     AVBufferRef* _0; AVBufferRef* _1; AVBufferRef* _2; AVBufferRef* _3; AVBufferRef* _4; AVBufferRef* _5; AVBufferRef* _6; AVBufferRef* _7;
-    
+
     public AVBufferRef* this[uint i]
     {
         get { if (i >= 8) throw new ArgumentOutOfRangeException(); fixed (AVBufferRef** p0 = &_0) { return *(p0 + i); } }
@@ -455,7 +455,7 @@ public unsafe struct byte_ptrArray8 : IFixedArray
     public static readonly int Size = 8;
     public int Length => 8;
     byte* _0; byte* _1; byte* _2; byte* _3; byte* _4; byte* _5; byte* _6; byte* _7;
-    
+
     public byte* this[uint i]
     {
         get { if (i >= 8) throw new ArgumentOutOfRangeException(); fixed (byte** p0 = &_0) { return *(p0 + i); } }
@@ -483,7 +483,7 @@ public unsafe struct byte_array8 : IFixedArray<byte>
     public static readonly int Size = 8;
     public int Length => 8;
     fixed byte _[8];
-    
+
     public byte this[uint i]
     {
         get => _[i];
@@ -511,7 +511,7 @@ public unsafe struct int_array8 : IFixedArray<int>
     public static readonly int Size = 8;
     public int Length => 8;
     fixed int _[8];
-    
+
     public int this[uint i]
     {
         get => _[i];
@@ -539,7 +539,7 @@ public unsafe struct ulong_array8 : IFixedArray<ulong>
     public static readonly int Size = 8;
     public int Length => 8;
     fixed ulong _[8];
-    
+
     public ulong this[uint i]
     {
         get => _[i];
@@ -567,7 +567,7 @@ public unsafe struct int_array9 : IFixedArray<int>
     public static readonly int Size = 9;
     public int Length => 9;
     fixed int _[9];
-    
+
     public int this[uint i]
     {
         get => _[i];
@@ -595,7 +595,7 @@ public unsafe struct AVHDRPlusPercentile_array15 : IFixedArray<AVHDRPlusPercenti
     public static readonly int Size = 15;
     public int Length => 15;
     AVHDRPlusPercentile _0; AVHDRPlusPercentile _1; AVHDRPlusPercentile _2; AVHDRPlusPercentile _3; AVHDRPlusPercentile _4; AVHDRPlusPercentile _5; AVHDRPlusPercentile _6; AVHDRPlusPercentile _7; AVHDRPlusPercentile _8; AVHDRPlusPercentile _9; AVHDRPlusPercentile _10; AVHDRPlusPercentile _11; AVHDRPlusPercentile _12; AVHDRPlusPercentile _13; AVHDRPlusPercentile _14;
-    
+
     public AVHDRPlusPercentile this[uint i]
     {
         get { if (i >= 15) throw new ArgumentOutOfRangeException(); fixed (AVHDRPlusPercentile* p0 = &_0) { return *(p0 + i); } }
@@ -623,7 +623,7 @@ public unsafe struct AVRational_array15 : IFixedArray<AVRational>
     public static readonly int Size = 15;
     public int Length => 15;
     AVRational _0; AVRational _1; AVRational _2; AVRational _3; AVRational _4; AVRational _5; AVRational _6; AVRational _7; AVRational _8; AVRational _9; AVRational _10; AVRational _11; AVRational _12; AVRational _13; AVRational _14;
-    
+
     public AVRational this[uint i]
     {
         get { if (i >= 15) throw new ArgumentOutOfRangeException(); fixed (AVRational* p0 = &_0) { return *(p0 + i); } }
@@ -651,7 +651,7 @@ public unsafe struct byte_array16 : IFixedArray<byte>
     public static readonly int Size = 16;
     public int Length => 16;
     fixed byte _[16];
-    
+
     public byte this[uint i]
     {
         get => _[i];
@@ -679,7 +679,7 @@ public unsafe struct AVRational_array25 : IFixedArray<AVRational>
     public static readonly int Size = 25;
     public int Length => 25;
     AVRational _0; AVRational _1; AVRational _2; AVRational _3; AVRational _4; AVRational _5; AVRational _6; AVRational _7; AVRational _8; AVRational _9; AVRational _10; AVRational _11; AVRational _12; AVRational _13; AVRational _14; AVRational _15; AVRational _16; AVRational _17; AVRational _18; AVRational _19; AVRational _20; AVRational _21; AVRational _22; AVRational _23; AVRational _24;
-    
+
     public AVRational this[uint i]
     {
         get { if (i >= 25) throw new ArgumentOutOfRangeException(); fixed (AVRational* p0 = &_0) { return *(p0 + i); } }
@@ -707,7 +707,7 @@ public unsafe struct AVRational_array25x25 : IFixedArray<AVRational_array25>
     public static readonly int Size = 25;
     public int Length => 25;
     AVRational_array25 _0; AVRational_array25 _1; AVRational_array25 _2; AVRational_array25 _3; AVRational_array25 _4; AVRational_array25 _5; AVRational_array25 _6; AVRational_array25 _7; AVRational_array25 _8; AVRational_array25 _9; AVRational_array25 _10; AVRational_array25 _11; AVRational_array25 _12; AVRational_array25 _13; AVRational_array25 _14; AVRational_array25 _15; AVRational_array25 _16; AVRational_array25 _17; AVRational_array25 _18; AVRational_array25 _19; AVRational_array25 _20; AVRational_array25 _21; AVRational_array25 _22; AVRational_array25 _23; AVRational_array25 _24;
-    
+
     public AVRational_array25 this[uint i]
     {
         get { if (i >= 25) throw new ArgumentOutOfRangeException(); fixed (AVRational_array25* p0 = &_0) { return *(p0 + i); } }

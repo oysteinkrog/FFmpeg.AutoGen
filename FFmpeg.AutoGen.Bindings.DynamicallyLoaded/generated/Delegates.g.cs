@@ -52,7 +52,7 @@ public unsafe struct av_buffer_pool_init2_pool_free_func
 }
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public unsafe delegate void av_log_set_callback_callback (void* @p0, int @p1,     
+public unsafe delegate void av_log_set_callback_callback (void* @p0, int @p1,
     #if NETSTANDARD2_1_OR_GREATER
     [MarshalAs(UnmanagedType.LPUTF8Str)]
     #else
@@ -66,7 +66,7 @@ public unsafe struct av_log_set_callback_callback_func
 }
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public unsafe delegate void av_log_set_formatted_callback_p0 (void* @p0, int @p1,     
+public unsafe delegate void av_log_set_formatted_callback_p0 (void* @p0, int @p1,
     #if NETSTANDARD2_1_OR_GREATER
     [MarshalAs(UnmanagedType.LPUTF8Str)]
     #else
@@ -80,7 +80,7 @@ public unsafe struct av_log_set_formatted_callback_p0_func
 }
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public unsafe delegate void av_log_set_formatted_filtered_callback_p0 (void* @p0, int @p1,     
+public unsafe delegate void av_log_set_formatted_filtered_callback_p0 (void* @p0, int @p1,
     #if NETSTANDARD2_1_OR_GREATER
     [MarshalAs(UnmanagedType.LPUTF8Str)]
     #else
@@ -158,7 +158,7 @@ public unsafe struct AVClass_item_name_func
 }
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public unsafe delegate int AVClass_query_ranges (AVOptionRanges** @p0, void* @obj,     
+public unsafe delegate int AVClass_query_ranges (AVOptionRanges** @p0, void* @obj,
     #if NETSTANDARD2_1_OR_GREATER
     [MarshalAs(UnmanagedType.LPUTF8Str)]
     #else
@@ -308,13 +308,13 @@ public unsafe struct AVFilter_preinit_func
 }
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public unsafe delegate int AVFilter_process_command (AVFilterContext* @p0,     
+public unsafe delegate int AVFilter_process_command (AVFilterContext* @p0,
     #if NETSTANDARD2_1_OR_GREATER
     [MarshalAs(UnmanagedType.LPUTF8Str)]
     #else
     [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
     #endif
-    string @cmd,     
+    string @cmd,
     #if NETSTANDARD2_1_OR_GREATER
     [MarshalAs(UnmanagedType.LPUTF8Str)]
     #else
@@ -360,7 +360,7 @@ public unsafe struct AVFormatContext_io_close2_func
 }
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public unsafe delegate int AVFormatContext_io_open (AVFormatContext* @s, AVIOContext** @pb,     
+public unsafe delegate int AVFormatContext_io_open (AVFormatContext* @s, AVIOContext** @pb,
     #if NETSTANDARD2_1_OR_GREATER
     [MarshalAs(UnmanagedType.LPUTF8Str)]
     #else

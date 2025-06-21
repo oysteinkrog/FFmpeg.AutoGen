@@ -18,7 +18,7 @@ public static unsafe partial class ffmpeg
     }
 }
     // original body hash: FGSX8EvLhMgYqP9+0z1+Clej4HxjpENDPDX7uAYLx6k=
-    
+
     /// <summary>Clip a signed 64bit integer value into the amin-amax range.</summary>
     /// <param name="a">value to clip</param>
     /// <param name="amin">minimum value of the clip range</param>
@@ -33,7 +33,7 @@ public static unsafe partial class ffmpeg
     }
 }
     // original body hash: FGSX8EvLhMgYqP9+0z1+Clej4HxjpENDPDX7uAYLx6k=
-    
+
     /// <summary>Reinterpret a double as a 64-bit integer.</summary>
     public static ulong av_double2int(double @f)
 {
@@ -42,7 +42,7 @@ public static unsafe partial class ffmpeg
     }
 }
     // original body hash: 2HuHK8WLchm3u+cK6H4QWhflx2JqfewtaSpj2Cwfi8M=
-    
+
     /// <summary>Reinterpret a float as a 32-bit integer.</summary>
     public static uint av_float2int(float @f)
 {
@@ -51,7 +51,7 @@ public static unsafe partial class ffmpeg
     }
 }
     // original body hash: uBvsHd8EeFnxDvSdDE1+k5Um29kCuf0aEJhAvDy0wZk=
-    
+
     /// <summary>Reinterpret a 64-bit integer as a double.</summary>
     public static double av_int2double(ulong @i)
 {
@@ -60,7 +60,7 @@ public static unsafe partial class ffmpeg
     }
 }
     // original body hash: iFt3hVHTpF9jjqIGAAf/c7FrGfenOXGxdsyMjmrbwvw=
-    
+
     /// <summary>Reinterpret a 32-bit integer as a float.</summary>
     public static float av_int2float(uint @i)
 {
@@ -69,7 +69,7 @@ public static unsafe partial class ffmpeg
     }
 }
     // original body hash: wLGFPpW+aIvxW79y6BVY1LKz/j7yc3BdiaJ7mD4oQmw=
-    
+
     /// <summary>Invert a rational.</summary>
     /// <param name="q">value</param>
     /// <returns>1 / q</returns>
@@ -83,7 +83,7 @@ public static unsafe partial class ffmpeg
     }
 }
     // original body hash: sXbO4D7vmayAx56EFqz9C0kakcSPSryJHdk0hr0MOFY=
-    
+
     /// <summary>Fill the provided buffer with a string containing an error string corresponding to the AVERROR code errnum.</summary>
     /// <param name="errbuf">a buffer</param>
     /// <param name="errbuf_size">size in bytes of errbuf</param>
@@ -97,7 +97,7 @@ public static unsafe partial class ffmpeg
     }
 }
     // original body hash: DRHQHyLQNo9pTxA+wRw4zVDrC7Md1u3JWawQX0BVkqE=
-    
+
     /// <summary>Create an AVRational.</summary>
     public static AVRational av_make_q(int @num, int @den)
 {
@@ -109,7 +109,7 @@ public static unsafe partial class ffmpeg
     }
 }
     // original body hash: IAPYNNcg3GX0PGxINeLQhb41dH921lPVKcnqxCk7ERA=
-    
+
     /// <summary>Convert an AVRational to a `double`.</summary>
     /// <param name="a">AVRational to convert</param>
     /// <returns>`a` in floating-point form</returns>
@@ -120,5 +120,5 @@ public static unsafe partial class ffmpeg
     }
 }
     // original body hash: j4R2BS8nF6czcUDVk5kKi9nLEdlTI/NRDYtnc1KFeyE=
-    
+
 }

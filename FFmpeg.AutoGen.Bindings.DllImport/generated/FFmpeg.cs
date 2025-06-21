@@ -12,7 +12,7 @@ public static partial class ffmpeg
     public static readonly int EINVAL = 22;
 
     public static readonly int EPIPE = 32;
-    
+
     static ffmpeg()
     {
 #if NET

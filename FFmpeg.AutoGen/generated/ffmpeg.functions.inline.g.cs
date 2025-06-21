@@ -12,7 +12,7 @@ public static unsafe partial class ffmpeg
     return av_log2((x - 1U) << 1);
 }
     // original body hash: Y9QGw919/NB5ltczSPmZu5WZt+BfR1GGQ58ULgOxiNo=
-    
+
     /// <summary>Clip a signed integer value into the amin-amax range.</summary>
     /// <param name="a">value to clip</param>
     /// <param name="amin">minimum value of the clip range</param>
@@ -28,7 +28,7 @@ public static unsafe partial class ffmpeg
         return a;
 }
     // original body hash: FGSX8EvLhMgYqP9+0z1+Clej4HxjpENDPDX7uAYLx6k=
-    
+
     /// <summary>Clip a signed integer value into the -32768,32767 range.</summary>
     /// <param name="a">value to clip</param>
     /// <returns>clipped value</returns>
@@ -40,7 +40,7 @@ public static unsafe partial class ffmpeg
         return a;
 }
     // original body hash: l7ot2X+8YIG7Ze9ecaMTap87pGl9Q5kffGq1e9dS9Es=
-    
+
     /// <summary>Clip a signed integer value into the -128,127 range.</summary>
     /// <param name="a">value to clip</param>
     /// <returns>clipped value</returns>
@@ -52,7 +52,7 @@ public static unsafe partial class ffmpeg
         return a;
 }
     // original body hash: 959D6ojD8+Bo9o7pGvHcWTnCDg5Ax0o328RGYDIiUvo=
-    
+
     /// <summary>Clip a signed integer into the -(2^p),(2^p-1) range.</summary>
     /// <param name="a">value to clip</param>
     /// <param name="p">bit position to clip at</param>
@@ -65,7 +65,7 @@ public static unsafe partial class ffmpeg
         return a;
 }
     // original body hash: H4R9TdJsLPxie0kMNORwLhiEFWSn5cG8vNmgEcRcwaE=
-    
+
     /// <summary>Clip a signed integer value into the 0-65535 range.</summary>
     /// <param name="a">value to clip</param>
     /// <returns>clipped value</returns>
@@ -77,7 +77,7 @@ public static unsafe partial class ffmpeg
         return a;
 }
     // original body hash: nI5Vkw30nAjS2NmNSdCSnHeAUcY47XT0lnrnsUK/bJ4=
-    
+
     /// <summary>Clip a signed integer value into the 0-255 range.</summary>
     /// <param name="a">value to clip</param>
     /// <returns>clipped value</returns>
@@ -89,7 +89,7 @@ public static unsafe partial class ffmpeg
         return a;
 }
     // original body hash: 32OGGgXBFRL7EcU8DizK9KbIFfU356+5hgUEyAOjIUY=
-    
+
     /// <summary>Clip a signed integer to an unsigned power of two range.</summary>
     /// <param name="a">value to clip</param>
     /// <param name="p">bit position to clip at</param>
@@ -102,7 +102,7 @@ public static unsafe partial class ffmpeg
         return a;
 }
     // original body hash: e+b5mkBcLXfL9tlPoRVY9A8fy1jLPsqovjAobPBirRs=
-    
+
     /// <summary>Clip a signed 64bit integer value into the amin-amax range.</summary>
     /// <param name="a">value to clip</param>
     /// <param name="amin">minimum value of the clip range</param>
@@ -118,7 +118,7 @@ public static unsafe partial class ffmpeg
         return a;
 }
     // original body hash: FGSX8EvLhMgYqP9+0z1+Clej4HxjpENDPDX7uAYLx6k=
-    
+
     /// <summary>Clip a double value into the amin-amax range. If a is nan or -inf amin will be returned. If a is +inf amax will be returned.</summary>
     /// <param name="a">value to clip</param>
     /// <param name="amin">minimum value of the clip range</param>
@@ -129,7 +129,7 @@ public static unsafe partial class ffmpeg
     return ((((a) > (amin) ? (a) : (amin))) > (amax) ? (amax) : (((a) > (amin) ? (a) : (amin))));
 }
     // original body hash: 3g76qefPWCYqXraY2vYdxoH58/EKn5EeR9v7cGEBM6Y=
-    
+
     /// <summary>Clip a float value into the amin-amax range. If a is nan or -inf amin will be returned. If a is +inf amax will be returned.</summary>
     /// <param name="a">value to clip</param>
     /// <param name="amin">minimum value of the clip range</param>
@@ -140,7 +140,7 @@ public static unsafe partial class ffmpeg
     return ((((a) > (amin) ? (a) : (amin))) > (amax) ? (amax) : (((a) > (amin) ? (a) : (amin))));
 }
     // original body hash: 3g76qefPWCYqXraY2vYdxoH58/EKn5EeR9v7cGEBM6Y=
-    
+
     /// <summary>Clip a signed 64-bit integer value into the -2147483648,2147483647 range.</summary>
     /// <param name="a">value to clip</param>
     /// <returns>clipped value</returns>
@@ -152,7 +152,7 @@ public static unsafe partial class ffmpeg
         return (int)a;
 }
     // original body hash: hVbFRW9NmALaR5Wqm8W2hfXu9xV8Kg7CEndQKK0wY4I=
-    
+
     /// <summary>Compare two rationals.</summary>
     /// <param name="a">First rational</param>
     /// <param name="b">Second rational</param>
@@ -170,14 +170,14 @@ public static unsafe partial class ffmpeg
         return int.MinValue;
 }
     // original body hash: M+RGb5gXGdDjfY/gK5ZeCYeYrZAxjTXZA9+XVu0I66Q=
-    
+
     /// <summary>Reinterpret a double as a 64-bit integer.</summary>
     public static ulong av_double2int(double @f)
 {
     return *(ulong*)&f;
 }
     // original body hash: 2HuHK8WLchm3u+cK6H4QWhflx2JqfewtaSpj2Cwfi8M=
-    
+
     /// <summary>Reinterpret a float as a 32-bit integer.</summary>
     public static uint av_float2int(float @f)
 {
@@ -186,21 +186,21 @@ public static unsafe partial class ffmpeg
     return v.i;
 }
     // original body hash: uBvsHd8EeFnxDvSdDE1+k5Um29kCuf0aEJhAvDy0wZk=
-    
+
     /// <summary>Wrapper around av_frame_side_data_get_c() to workaround the limitation that for any type T the conversion from T * const * to const T * const * is not performed automatically in C.</summary>
     public static AVFrameSideData* av_frame_side_data_get(AVFrameSideData** @sd, int @nb_sd, AVFrameSideDataType @type)
 {
     return av_frame_side_data_get_c((const AVFrameSideData *const *)sd, nb_sd, type);
 }
     // original body hash: nxiyu/BnkvF9Z/fWwpii6qfquOeLA/wdeiuxyQQxS4E=
-    
+
     /// <summary>Wrapper around av_image_copy() to workaround the limitation that the conversion from uint8_t * const * to const uint8_t * const * is not performed automatically in C.</summary>
     public static void av_image_copy2(ref byte_ptrArray4 @dst_data, in int_array4 @dst_linesizes, ref byte_ptrArray4 @src_data, in int_array4 @src_linesizes, AVPixelFormat @pix_fmt, int @width, int @height)
 {
     av_image_copy(dst_data, dst_linesizes, (const uint8_t *const *)src_data, src_linesizes, pix_fmt, width, height);
 }
     // original body hash: RdaM2zKuF7t0cNJItdh1SZPg9WiOfPpTwty5cHDiZ2A=
-    
+
     /// <summary>Reinterpret a 64-bit integer as a double.</summary>
     public static double av_int2double(ulong @i)
 {
@@ -209,7 +209,7 @@ public static unsafe partial class ffmpeg
     return v.f;
 }
     // original body hash: iFt3hVHTpF9jjqIGAAf/c7FrGfenOXGxdsyMjmrbwvw=
-    
+
     /// <summary>Reinterpret a 32-bit integer as a float.</summary>
     public static float av_int2float(uint @i)
 {
@@ -218,7 +218,7 @@ public static unsafe partial class ffmpeg
     return v.f;
 }
     // original body hash: wLGFPpW+aIvxW79y6BVY1LKz/j7yc3BdiaJ7mD4oQmw=
-    
+
     /// <summary>Invert a rational.</summary>
     /// <param name="q">value</param>
     /// <returns>1 / q</returns>
@@ -228,7 +228,7 @@ public static unsafe partial class ffmpeg
     return r;
 }
     // original body hash: sXbO4D7vmayAx56EFqz9C0kakcSPSryJHdk0hr0MOFY=
-    
+
     /// <summary>Fill the provided buffer with a string containing an error string corresponding to the AVERROR code errnum.</summary>
     /// <param name="errbuf">a buffer</param>
     /// <param name="errbuf_size">size in bytes of errbuf</param>
@@ -240,7 +240,7 @@ public static unsafe partial class ffmpeg
     return errbuf;
 }
     // original body hash: DRHQHyLQNo9pTxA+wRw4zVDrC7Md1u3JWawQX0BVkqE=
-    
+
     /// <summary>Create an AVRational.</summary>
     public static AVRational av_make_q(int @num, int @den)
 {
@@ -248,20 +248,20 @@ public static unsafe partial class ffmpeg
     return r;
 }
     // original body hash: IAPYNNcg3GX0PGxINeLQhb41dH921lPVKcnqxCk7ERA=
-    
+
     [Obsolete()]
     public static uint av_mod_uintp2_c(uint @a, uint @p)
 {
     return av_zero_extend_c(a, p);
 }
     // original body hash: MfDd5KRKGNiwvccdrrbME05wNKCRzGTF1T24OggAyp0=
-    
+
     public static int av_parity_c(uint @v)
 {
     return av_popcount_c(v) & 1;
 }
     // original body hash: Hsrq5CWkNvuNTnqES92ZJYVYpKXFwosrZNja/oaUd0s=
-    
+
     /// <summary>Count number of bits set to one in x</summary>
     /// <param name="x">value to count bits of</param>
     /// <returns>the number of bits set to one in x</returns>
@@ -274,7 +274,7 @@ public static unsafe partial class ffmpeg
     return (x + (x >> 16)) & 63;
 }
     // original body hash: 6EqV8Ll7t/MGINV9Nh3TSEbNyUYeskm7HucpU0SAkgg=
-    
+
     /// <summary>Count number of bits set to one in x</summary>
     /// <param name="x">value to count bits of</param>
     /// <returns>the number of bits set to one in x</returns>
@@ -283,7 +283,7 @@ public static unsafe partial class ffmpeg
     return av_popcount_c((uint32_t)x) + av_popcount_c((uint32_t)(x >> 32));
 }
     // original body hash: 4wjPAKU9R0yS6OI8Y9h3L6de+uXt/lBm+zX7t5Ch18k=
-    
+
     /// <summary>Convert an AVRational to a `double`.</summary>
     /// <param name="a">AVRational to convert</param>
     /// <returns>`a` in floating-point form</returns>
@@ -292,7 +292,7 @@ public static unsafe partial class ffmpeg
     return a.num / (double)a.den;
 }
     // original body hash: j4R2BS8nF6czcUDVk5kKi9nLEdlTI/NRDYtnc1KFeyE=
-    
+
     /// <summary>Add two signed 32-bit values with saturation.</summary>
     /// <param name="a">one value</param>
     /// <param name="b">another value</param>
@@ -302,7 +302,7 @@ public static unsafe partial class ffmpeg
     return av_clipl_int32_c((int64_t)a + b);
 }
     // original body hash: GAAy4GsS2n+9kJ/8hzuONPUOGIsiOj7PvXnLHUVrimY=
-    
+
     /// <summary>Add two signed 64-bit values with saturation.</summary>
     /// <param name="a">one value</param>
     /// <param name="b">another value</param>
@@ -313,7 +313,7 @@ public static unsafe partial class ffmpeg
     return !__builtin_add_overflow(a, b, &tmp) ? tmp : (tmp < 0 ? 9223372036854775807LL : (-9223372036854775807LL - 1));
 }
     // original body hash: qeup76rp1rjakhMYQJWWEYIkpgscUcDfzDIrjyqk5iM=
-    
+
     /// <summary>Add a doubled value to another value with saturation at both stages.</summary>
     /// <param name="a">first value</param>
     /// <param name="b">value doubled and added to a</param>
@@ -323,7 +323,7 @@ public static unsafe partial class ffmpeg
     return av_sat_add32_c(a, av_sat_add32_c(b, b));
 }
     // original body hash: Kbha6XFULk7dxB6zc5WRwoPczQVN7HBcNs9Hjlj/Caw=
-    
+
     /// <summary>Subtract a doubled value from another value with saturation at both stages.</summary>
     /// <param name="a">first value</param>
     /// <param name="b">value doubled and subtracted from a</param>
@@ -333,7 +333,7 @@ public static unsafe partial class ffmpeg
     return av_sat_sub32_c(a, av_sat_add32_c(b, b));
 }
     // original body hash: ypu4i+30n3CeMxdL8pq7XDYAFBi1N5d2mkIT6zQ1bO0=
-    
+
     /// <summary>Subtract two signed 32-bit values with saturation.</summary>
     /// <param name="a">one value</param>
     /// <param name="b">another value</param>
@@ -343,7 +343,7 @@ public static unsafe partial class ffmpeg
     return av_clipl_int32_c((int64_t)a - b);
 }
     // original body hash: /tgXI2zbIgliqOwZbpnq7jSiVj0N70RjBFsbkIkWhsM=
-    
+
     /// <summary>Subtract two signed 64-bit values with saturation.</summary>
     /// <param name="a">one value</param>
     /// <param name="b">another value</param>
@@ -354,14 +354,14 @@ public static unsafe partial class ffmpeg
     return !__builtin_sub_overflow(a, b, &tmp) ? tmp : (tmp < 0 ? 9223372036854775807LL : (-9223372036854775807LL - 1));
 }
     // original body hash: 6YrSxDrYVG1ac1wlCiXKMhTwj7Kx6eym/YtspKusrGk=
-    
+
     /// <summary>Return x default pointer in case p is NULL.</summary>
     public static void* av_x_if_null(void* @p, void* @x)
 {
     return (void *)(intptr_t)(p ? p : x);
 }
     // original body hash: zOY924eIk3VeTSNb9XcE2Yw8aZ4/jlzQSfP06k5n0nU=
-    
+
     /// <summary>Clear high bits from an unsigned integer starting with specific bit position</summary>
     /// <param name="a">value to clip</param>
     /// <param name="p">bit position to clip at. Must be between 0 and 31.</param>
@@ -371,7 +371,7 @@ public static unsafe partial class ffmpeg
     return a & ((1U << p) - 1);
 }
     // original body hash: ncn4Okxr9Nas1g/qCfpRHKtywuNmJuf3UED+o3wjadc=
-    
+
     /// <summary>ftell() equivalent for AVIOContext.</summary>
     /// <returns>position or AVERROR.</returns>
     public static long avio_tell(AVIOContext* @s)
@@ -379,5 +379,5 @@ public static unsafe partial class ffmpeg
     return avio_seek(s, 0, 1);
 }
     // original body hash: o18c3ypeh9EsmYaplTel2ssgM2PZKTTDfMjsqEopycw=
-    
+
 }
